@@ -25,8 +25,8 @@ bool validCode(const char* code)
 	char* eventN = new char[MAX_EVENT_NAME_LENGTH];
 	Date d;
 	char* hall = new char[MAX_HALL_NAME_LENGTH];
-	unsigned short row = 0;
-	unsigned short seat = 0;
+	size_t row = 0;
+	size_t seat = 0;
 
 	ss.getline(eventN, MAX_EVENT_NAME_LENGTH, DELIMITER4);
 	ss >> d;
@@ -134,7 +134,7 @@ void Ticket::setBoughtTo(bool nv)
 	}
 }
 
-void Ticket::setCodeviaParam(const Date& d, const char* eName, const char* h, const unsigned short r, const unsigned short s)
+void Ticket::setCodeviaParam(const Date& d, const char* eName, const char* h, const size_t r, const size_t s)
 {
 	std::stringstream ss;
 	ss << eName << DELIMITER4
@@ -187,7 +187,7 @@ const char* Ticket::getHall() const
 
 }
 
-const unsigned short Ticket::getRow() const
+const size_t Ticket::getRow() const
 {
 	std::stringstream ss(getCode());
 	char* temp = new char[MAX_EVENT_NAME_LENGTH];
@@ -197,12 +197,12 @@ const unsigned short Ticket::getRow() const
 	}
 	delete[] temp;
 
-	unsigned short row = 0;
+	size_t row = 0;
 	ss >> row;
 	return row;
 }
 
-const unsigned short Ticket::getSeat() const
+const size_t Ticket::getSeat() const
 {
 	std::stringstream ss(getCode());
 	char* temp = new char[MAX_EVENT_NAME_LENGTH];
@@ -212,7 +212,7 @@ const unsigned short Ticket::getSeat() const
 	}
 	delete[] temp;
 
-	unsigned short seat = 0;
+	size_t seat = 0;
 	ss >> seat;
 	return seat;
 }
