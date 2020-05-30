@@ -187,14 +187,14 @@ void Manager::open()
 	file.open(fileName);
 	if (!file)
 	{
-		std::cerr << "File couldn’t be opened!\n";
+		std::cerr << "File couldnâ€™t be opened!\n";
 		callManager();
 	}
 
 	hallsFile.open(hallsFileName);
 	if (!hallsFile)
 	{
-		std::cerr << "Couldn’t open the file for reading halls!\n";
+		std::cerr << "Couldnâ€™t open the file for reading halls!\n";
 		callManager();
 	}
 
@@ -897,8 +897,16 @@ void Manager::check(const char* code)
 	{
 		if (strcmp(x->name, t.getHall()) == 0 && validCode(code))
 		{
-			t.print_ticket();
-			return;
+			for (auto& y : events)
+			{
+				if (strcmp(y->getEventName(), t.getEvent()) == 0)
+				{
+					t.print_ticket();
+					return;
+				}
+
+			}
+		
 		}
 	}
 
