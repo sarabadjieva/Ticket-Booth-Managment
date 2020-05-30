@@ -1,6 +1,6 @@
 #include "Date.h"
 
-Date::Date(unsigned y, unsigned m, unsigned d) : year(y), month(m), day(d), validDate(true)
+Date::Date(size_t y, size_t m, size_t d) : year(y), month(m), day(d), validDate(true)
 {
 	if (y == 1 && m == 1 && d == 1) //default values
 	{
@@ -12,7 +12,7 @@ Date::Date(unsigned y, unsigned m, unsigned d) : year(y), month(m), day(d), vali
 		setDay(tPtr->tm_mday);
 	}
 
-	unsigned maxDays = daysInMonth(y, m);
+	size_t maxDays = daysInMonth(y, m);
 	if (m < 1 || m > 12 || d<1 || d> maxDays) //valid date
 	{
 		std::cerr << "Not valid date!\n";
@@ -39,22 +39,22 @@ Date& Date::operator=(const Date& d)
 	return *this;
 }
 
-void Date::setYear(const unsigned y)
+void Date::setYear(const size_t y)
 {
 	this->year = y;
 }
 
-void Date::setMonth(const unsigned m)
+void Date::setMonth(const size_t m)
 {
 	this->month = m;
 }
 
-void Date::setDay(const unsigned d)
+void Date::setDay(const size_t d)
 {
 	this->day = d;
 }
 
-unsigned Date::daysInMonth(unsigned y, unsigned m) const
+size_t Date::daysInMonth(size_t y, size_t m) const
 {
 
 	if (m == 2)
@@ -73,7 +73,7 @@ unsigned Date::daysInMonth(unsigned y, unsigned m) const
 
 Date& Date::nextDate() const
 {
-	unsigned daysM = daysInMonth(this->year, this->month);
+	size_t daysM = daysInMonth(this->year, this->month);
 	Date* d;
 
 	if (this->getDay() < daysM)
@@ -166,7 +166,7 @@ std::istream& operator>>(std::istream& is, Date& d)
 	d.setMonth(month);
 	d.setDay(day);
 
-	unsigned maxDays = d.daysInMonth(year, month);
+	size_t maxDays = d.daysInMonth(year, month);
 	if (d.month < 1 || d.month > 12 || d.day<1 || d.day> maxDays)
 	{
 		std::cerr << "Not valid date!\n";
