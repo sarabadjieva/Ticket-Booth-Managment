@@ -892,21 +892,36 @@ void Manager::bookings(const char* parameter)
 
 void Manager::check(const char* code)
 {
-	Ticket t(code);
-	for (auto& x : halls)
+	if (validCode(code))
 	{
-		if (strcmp(x->name, t.getHall()) == 0 && validCode(code))
+		Ticket t(code);
+		for (auto& x : events)
 		{
-			for (auto& y : events)
+			if (strcmp(x->getEventName(), t.getEvent()) == 0)
 			{
-				if (strcmp(y->getEventName(), t.getEvent()) == 0)
+				if (x->getShows().count(t.getDate()) == 0)
 				{
-					t.print_ticket();
+					std::cout << "This code isn't valid!\n";
 					return;
+				}
+				else
+				{
+					if (strcmp(x->getShows().at(t.getDate())) == 0)
+					{
+						for (size_t i = 0; i < x->getSize(); i++)
+						{
+							if (t == x->getTickets()[i])
+							{
+								x->getTickets()[i].print_ticket();
+								return;
+							}
+						}
+						t.print_ticket();
+						return;
+					}
 				}
 
 			}
-		
 		}
 	}
 
