@@ -22,29 +22,29 @@ const char DELIMITER_ = '_';
 class Date
 {
 private:
-	unsigned int year;
-	unsigned int month;
-	unsigned int day;
+	size_t year;
+	size_t month;
+	size_t day;
 	bool validDate;
 public:
 
 	//the default values are 1, because I set the date to today's date if no parameters are given
 	//and they are not zero because of the second if-function, which would set validDate to false
-	Date(unsigned y = 1, unsigned m = 1, unsigned d = 1);
+	Date(size_t y = 1, size_t m = 1, size_t d = 1);
 	Date(const Date&);
 	Date& operator=(const Date&);
 	~Date() {};
 
-	const unsigned getYear() const { return this->year; }
-	const unsigned getMonth() const { return this->month; }
-	const unsigned getDay() const { return this->day; }
+	const size_t getYear() const { return this->year; }
+	const size_t getMonth() const { return this->month; }
+	const size_t getDay() const { return this->day; }
 	bool isValidDate() const { return this->validDate; };
 
-	void setYear(const unsigned);
-	void setMonth(const unsigned);
-	void setDay(const unsigned);
+	void setYear(const size_t);
+	void setMonth(const size_t);
+	void setDay(const size_t);
 
-	unsigned daysInMonth(unsigned, unsigned) const;
+	size_t daysInMonth(size_t, size_t) const;
 	Date& nextDate() const;
 
 	bool operator==(const Date&) const;
