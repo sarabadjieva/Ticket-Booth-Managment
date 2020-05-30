@@ -34,7 +34,7 @@ public:
 	void setBookedTo(bool);
 	void setBoughtTo(bool);
 	void setNote(const char*);
-	void setCodeviaParam(const Date&, const char* eName = UNKNOWN, const char* h = UNKNOWN, const unsigned short r = 0, const unsigned short s = 0);
+	void setCodeviaParam(const Date&, const char* eName = UNKNOWN, const char* h = UNKNOWN, const size_t r = 0, const size_t s = 0);
 
 	const char* getCode() const { return this->code; };
 	bool getBookedValue() const { return this->booked; };
@@ -45,8 +45,8 @@ public:
 	const char* getEvent() const;
 	const Date& getDate() const;
 	const char* getHall() const;
-	const unsigned short getRow() const;
-	const unsigned short getSeat() const;
+	const size_t getRow() const;
+	const size_t getSeat() const;
 
 
 	void print_ticket() const;
