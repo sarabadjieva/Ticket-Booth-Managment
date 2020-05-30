@@ -56,7 +56,7 @@ public:
 	void book(unsigned short row, unsigned short seat, const Date&, const char* eName, const char* note);
 	void unbook(unsigned short, unsigned short, const Date&, const char*);
 	void buy(unsigned short row, unsigned short seat, const Date&, const char* eName);
-	void bookings(const Date&, const char* hall);
+	void bookings(const Date&, const char* name);
 	void bookings(const char*);
 	void check(const char* code);
 	void report(const Date&, const Date&, const char* hall = nullptr);
