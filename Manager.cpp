@@ -474,7 +474,7 @@ void Manager::workwithfile()
 	}
 	else if (strcmp(functionName, "bookings") == 0)
 	{
-		if (wordCount == 2)
+		if (wordCount == 3)
 		{
 			Date d;
 			char hall[MAX_HALL_NAME_LENGTH];
@@ -483,7 +483,7 @@ void Manager::workwithfile()
 			ss.getline(hall, MAX_HALL_NAME_LENGTH);
 			bookings(d, hall);
 		}
-		else if (wordCount == 3)
+		else if (wordCount == 2)
 		{
 			char parameter[MAX_HALL_NAME_LENGTH];
 			ss.getline(parameter, MAX_HALL_NAME_LENGTH);
@@ -512,6 +512,18 @@ void Manager::workwithfile()
 	}
 	else if (strcmp(functionName, "report") == 0)
 	{
+	if (wordCount == 3)
+	{
+		Date d1, d2;
+		ss >> d1;
+		ss.get();
+		ss >> d2;
+		ss.get();
+		report(d1, d2);
+		}
+		
+	else
+	{
 		Date d1, d2;
 		char hall[MAX_HALL_NAME_LENGTH];
 
@@ -522,6 +534,8 @@ void Manager::workwithfile()
 		ss.getline(hall, MAX_HALL_NAME_LENGTH);
 
 		report(d1, d2, hall);
+	}
+
 	}
 	else if (strcmp(functionName, "mostwatched") == 0)
 	{
@@ -906,7 +920,7 @@ void Manager::check(const char* code)
 				}
 				else
 				{
-					if (strcmp(x->getShows().at(t.getDate())) == 0)
+					if (strcmp(x->getShows().at(t.getDate()), t.getHall()) == 0)
 					{
 						for (size_t i = 0; i < x->getSize(); i++)
 						{
@@ -931,9 +945,18 @@ void Manager::check(const char* code)
 void Manager::report(const Date& d1, const Date& d2, const char* hall)
 {
 	//do some validation
-	if (d1 > Date() || d2 > Date() || d1 > d2)
+	/*if (d1 > Date() || d2 > Date() || d1 > d2)
 	{
 		std::cerr << "Enter dates before the current. The first of them should be before the second one!\n";
+		return;
+	}*/
+
+	if (hall == nullptr)
+	{
+		for (auto& x : events)
+		{
+			x->report(d1,d2);
+		}
 		return;
 	}
 
