@@ -195,11 +195,11 @@ void Event::unbookTicket(const Ticket& t)
 void Event::report(const Date& d1, const Date& d2, const char* hall)
 {
 	//do some validation
-	if (d1 > Date() || d2 > Date())
+	/*if (d1 > Date() || d2 > Date())
 	{
 		std::cerr << "Enter dates before the current!\n";
 		return;
-	}
+	}*/
 	if (d1 > d2)
 	{
 		std::cerr << "The first date should be before the second one!\n";
